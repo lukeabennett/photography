@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Luke Bennett Photography</title>
+    <title>Luke Bennett Photography - Gallery</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -41,14 +41,14 @@
     <!-- Local files -->
     <link rel="stylesheet" href="style.css">
     <script src="photos.js"></script>
+
 </head>
 <body>
-    <div class="row m-0 py-5">
-        <div class="text-container col-12 col-md-3 col-lg-2 pl-5">
+    <div class="row m-0">
+        <div class="text-container col-12 col-md-3 col-lg-2 pt-5 pl-5">
             <h4>Luke Bennett</h4>
             <p>City and Landscape Photography</p>
             <p>South West, UK</p>
-
             <a href="index.html">
                 <p>Home</p>
             </a>
@@ -57,23 +57,9 @@
             </a>
         </div>
 
-        <div id="photo-viewer" class="col-12 col-md-9 row m-0 p-0">
-
-            <div id="photo-container" class="image-container col-12 col-lg-8 m-0 pt-4 p-xl-0 p-lg-0">
-            </div>
-
-            <div id="text-container" class="vertical-align-outer col-12 col-lg-4 m-0 p-4 pt-xl-0 pt-lg-0" style="display:flex; font-size: small;">
+        <div id="photos" class="image-container col-12 col-md-9 col-lg-10 row m-0 py-4">
+            <div class="col-12 py-5">
                 <p class="center-align">Apologies, this site only works with javascript enabled browsers.</p>
-            </div>
-
-            <div class="row col-12 m-0 px-0 pt-sm-0 pt-md-5 pt-lg-5 pt-xl-5" style="cursor: pointer;">
-                <div class="col center-align" onclick="photoLeft();" onkeypress="photoLeft();" tabindex="0">
-                    <span><i class="arrow left"></i></span>
-                </div>
-            
-                <div class="col center-align" onclick="photoRight();" onkeypress="photoRight();" tabindex="0" aria-details="">
-                    <span><i class="arrow right"></i></span>
-                </div>
             </div>
         </div>
     </div>
@@ -85,78 +71,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        const featurePhotos = photos.filter(photo => photo.feature === true);
-
-        let currentPhotoIndex = 0;
-        let $photoContainer = $('#photo-container');
-        let $textContainer = $('#text-container');
-
-        function bumpCurrentPhotoUp() {
-            const numberOfPhotos = featurePhotos.length;
-            const numberOfPhotosIndexed = numberOfPhotos - 1;
-            if (currentPhotoIndex == numberOfPhotosIndexed) {
-                currentPhotoIndex = 0;
-            } else {
-                currentPhotoIndex++;
-            }
-        };
-
-        function bumpCurrentPhotoDown() {
-            const numberOfPhotos = featurePhotos.length;
-            const numberOfPhotosIndexed = numberOfPhotos - 1;
-            if (currentPhotoIndex == 0) {
-                currentPhotoIndex = numberOfPhotosIndexed;
-            } else {
-                currentPhotoIndex--;
-            }
-        };
-
         let photoTemplate = (source) => `
-            <div class="col">
-                <img id="image" class="full-image" src="photos/${source}.jpg">
+            <div class="frame col-12 col-md-4 p-4">
+                <img class="image" src="photos/${source}.jpg">
             </div>`;
 
-        let textTemplate = (photo) => `
-            <div class="col vertical-align-inner">
-                <p class="pt-3">${photo.description}</p>
-                <p class="pt-3">${photo.location}</p>
-            </div>`;
+        function loadPhotos() {
+            let $photoContainer = $('#photos');
+            for (let photo of photos) {
+                $photoContainer.append(photoTemplate(photo.link));
+            }
+        };
 
-        function clearPhoto() {
+        function clearPhotos() {
+            let $photoContainer = $('#photos');
             $photoContainer.html("");
         };
-
-        function loadPhoto() {
-            $photoContainer.append(photoTemplate(featurePhotos[currentPhotoIndex].link));
-        };
-
-        function clearText() {
-            $textContainer.html("");
-        };
-
-        function loadText() {
-            $textContainer.append(textTemplate(featurePhotos[currentPhotoIndex]));
-        };
         
-        function photoLeft() {
-            bumpCurrentPhotoDown();
-            redraw();
-        };
-
-        function photoRight() {
-            bumpCurrentPhotoUp();
-            redraw();
-        };
-
-        function redraw() {
-            clearPhoto();
-            clearText();
-            loadPhoto();
-            loadText();
-        }
-
-        // on page load
-        redraw();
+        clearPhotos();
+        loadPhotos();
 
     </script>
 </body>
