@@ -26,7 +26,7 @@ body {
 
 .center-align {
 	text-align: center;
-};
+}
 
 .vertical-align-outer {
   	display: flex;
@@ -39,11 +39,11 @@ body {
 
 .pointerCursor:hover {
 	cursor: pointer;
-};
+}
 
 .small-text {
 	font-size: small !important;
-};
+}
 
 .text-container {
 	max-height: 100vh;
