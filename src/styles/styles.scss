@@ -1,0 +1,120 @@
+@charset "utf-8";
+@import '~@sweetalert2/theme-bulma/bulma.scss';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap');
+
+body {
+    margin: auto;
+    background-color: #f5f5f5;
+    max-width: 100%;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif !important;
+}
+
+// Allows for sticky footers
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.footer {
+    padding: 3rem 1.5rem 3rem !important;
+}
+
+.site-content {
+    flex: 1;
+}
+
+// *********************************
+//       COLLECTION DESCRIPTION
+// *********************************
+.preserveFormatting {
+    white-space: pre-wrap;
+}
+
+// *********************************
+//       COLLECTION CARDS
+// *********************************
+.collection-card-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.collection-card-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 6em;
+}
+
+// *********************************
+//          ITEM NAV DROPDOWN
+// *********************************
+.navbar-item.is-mega {
+    position: static;
+}
+
+// *********************************
+//          ITEM IMAGES
+// *********************************
+
+.dot-grid-small {
+    width: 250px;
+    height: 40px;
+    background-image: radial-gradient(rgba($yellow, 0.4) 1px, transparent 0);
+    background-size: 10px 10px;
+    position: absolute;
+    left: 30px;
+    top: -5px;
+    overflow: hidden;
+}
+
+// *********************************
+//          ITEM IMAGES
+// *********************************
+.item-images {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+// *********************************
+//       BULMA INITIAL VARIABLES
+// *********************************
+@import "~bulma/sass/utilities/initial-variables.sass";
+
+// *********************************
+// Import BULMA - ALL VARIABLE OVERRIDES MUST BE BEFORE THIS LINE
+// *********************************
+
+$card-shadow: 0;
+$card-radius: 0.1rem;
+
+// *********************************
+//     BULMA NAVBAR OVERRIDES
+// *********************************
+$navbar-dropdown-radius: 0;
+$navbar-dropdown-border-top: 0;
+$navbar-dropdown-background-color: $dark;
+
+// mobile view
+$navbar-background-color: $dark;
+$navbar-item-hover-color: $dark;
+$navbar-item-hover-background-color: $white;
+// standard text colour
+$navbar-item-color: $white;
+$navbar-item-active-color: $white;
+
+@import "~bulma/bulma";
+
+@media screen and (max-width: 768px), print {
+    .button.is-fullwidth-mobile {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.card-content {
+    padding: 1.2rem;
+}
